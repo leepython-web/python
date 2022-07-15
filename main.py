@@ -3,7 +3,7 @@ print('*' * 15, 'Calculator', '*' * 15)
 print('Press q to exit')
 while True:
     sign = input('Enter a sign: +, -, *, /')
-    if sign == 'q' or 'й':
+    if sign == 'q':
         break
     if sign in ('+','-','*','/'):
         x = float(input('Enter a value of x: '))
