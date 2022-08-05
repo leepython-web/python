@@ -8,7 +8,8 @@ surname, name, patronymic, *date = new_data
 print(name, date)
 
 datepat = re.compile(r'(\d+)/(\d+)/(\d+)')    # Создание маски для поиска с группами захвата
-date = datepat.findall(data)
+all_data = datepat.findall(data)
+print(all_data)
 print('All dates: ', date)
 
 def change_date():
