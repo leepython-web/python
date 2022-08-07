@@ -34,7 +34,7 @@ def check_win(board):
     for each in win_coord:
         if board[each[0]] == board[each[1]] == board[each[2]]:
             return board[each[0]]
-        return False
+    return False
 
 
 def main(board):
@@ -50,7 +50,7 @@ def main(board):
         if counter >= 4:
             tmp = check_win(board)
             if tmp:
-                print(tmp, ' победил!')
+                print('\n', '*' * 13, '\n', tmp, ' победил!', '\n', '*' * 13)
                 victory = True
                 break
         if counter == 9:
