@@ -16,3 +16,11 @@ def change_date():
     refactor = re.sub(r'(\d+)/(\d+)/(\d+)', r'\3-\1-\2', data)
     print('Another format of date: ', refactor)
 change_date()
+
+def data_list():
+    global all_data
+    txt = open('data.txt', 'w', encoding='utf-8')
+    for i in all_data:
+        txt.write(f'\n {i}')
+    txt.close()
+data_list()
