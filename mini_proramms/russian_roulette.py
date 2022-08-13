@@ -9,9 +9,9 @@ death = 0
 
 def range_table():
     name = input('Enter your name: ')
-    winner =  str(name) + ' ' + str(score)
-    range_file = open('score.txt', 'ab')
-    pickle.dump(winner, range_file)
+    winner = str(name) + ' ' + str(score) + '\n'
+    range_file = open('score.txt', 'a', encoding='utf-8')
+    range_file.write(winner)
     range_file.close
 
 def main_menu():
@@ -43,9 +43,9 @@ def start():
     print(f'Your score is {score}. But you died {death} times. See you next time!')
 
 def read_range_table():
-    range_file = open('score.txt', 'rb')
-    range = pickle.load(range_file)
+    range_file = open('score.txt', 'r', encoding='utf-8')
+    range = range_file.read()
+    print('\n\n', '*' * 15, 'Record Table', '*' * 15, '\n', range)
     range_file.close
-    print('\n\n', '*' * 15, 'let\'s play Russian Roulette', '*' * 15, '\n', range)
 
 main_menu()
