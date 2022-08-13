@@ -7,13 +7,6 @@ print('The rules are simple. Stay alive as long as possible and take a place in 
 score = 0
 death = 0
 
-def range_table():
-    name = input('Enter your name: ')
-    winner = str(name) + ' ' + str(score) + '\n'
-    range_file = open('score.txt', 'a', encoding='utf-8')
-    range_file.write(winner)
-    range_file.close
-
 def main_menu():
     answer = None
     while not answer:
@@ -41,6 +34,13 @@ def start():
             death += 1  # Счетчик смертей
             print(f'You died {death} times')
     print(f'Your score is {score}. But you died {death} times. See you next time!')
+
+def range_table():
+    name = input('Enter your name: ')
+    winner = str(name) + ' ' + str(score) + '\n'
+    range_file = open('score.txt', 'a', encoding='utf-8')
+    range_file.write(winner)
+    range_file.close
 
 def read_range_table():
     range_file = open('score.txt', 'r', encoding='utf-8')
