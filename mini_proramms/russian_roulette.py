@@ -1,6 +1,6 @@
 #   Привет, здесь я попробую создать рандомайзер с игровой механикой
 
-import random, pickle, shelve
+import random, re, pickle, shelve
 print('\n\n', '*' * 15, 'let\'s play Russian Roulette', '*' * 15)
 print('The rules are simple. Stay alive as long as possible and take a place in the ranking!')
 
@@ -10,15 +10,18 @@ death = 0
 def main_menu():
     answer = None
     while not answer:
-        print('\n \t\t  MAIN MENU', '\n 1. Play Game \n 2. Records table \n\n Для выхода нажмите любую кнопку')
+        print('\n \t\t  MAIN MENU', '\n 1. Play Game \n 2. Records table \n 3. Exit \n\n')
         answer = input()
-        if answer == '2':
-            read_range_table()
-        elif answer == '1':
+        if answer == '1':
             start()
-        else:
+        elif answer == '2':
+            read_range_table()
+        elif answer == '3':
+            print('Come back again!')
             break
-
+        else:
+            print('INCORRECT INPUT!')
+            return main_menu()
 def start():
     global score, death
     while True:
@@ -47,5 +50,10 @@ def read_range_table():
     range = range_file.read()
     print('\n\n', '*' * 15, 'Record Table', '*' * 15, '\n', range)
     range_file.close
+
+def rating(score):
+    global score
+    range = re.split(r'[,;./\s]\s*', range_file)
+
 
 main_menu()
