@@ -51,9 +51,29 @@ def read_range_table():
     print('\n\n', '*' * 15, 'Record Table', '*' * 15, '\n', range)
     range_file.close
 
-def rating(score):
-    global score
-    range = re.split(r'[,;./\s]\s*', range_file)
+def rating():
+    global score, death
+    range_file = open('score.txt', 'r', encoding='utf-8')
+    range_read = range_file.read()
+    range = re.split(r'[,;./\s]\s*', range_read)
+    *name, points = range
+    print(name)
+    #insertion_sort(points)
+    range_file.close
 
 
-main_menu()
+def insertion_sort(arr):
+    for i in range(len(arr)):
+        cursor = arr[i]
+        pos = i
+
+        while pos > 0 and arr[pos - 1] > cursor:
+            # Меняем местами число, продвигая по списку
+            arr[pos] = arr[pos - 1]
+            pos = pos - 1
+        # Остановимся и сделаем последний обмен
+        arr[pos] = cursor
+
+    return arr
+
+rating()
