@@ -53,11 +53,16 @@ def read_range_table():
 
 def rating():
     global score, death
+    count = 0
     range_file = open('score.txt', 'r', encoding='utf-8')
     range_read = range_file.read()
     range = re.split(r'[,;./\s]\s*', range_read)
-    *name, points = range
-    print(name)
+    new_range = []
+    for i in range:
+        count += 1
+        if count %2 ==0:
+            new_range.append(i)
+    print(new_range.sort)
     #insertion_sort(points)
     range_file.close
 
