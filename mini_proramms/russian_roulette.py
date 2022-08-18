@@ -62,7 +62,9 @@ def rating():
         count += 1
         if count %2 ==0:
             new_range.append(i)
-    print(new_range.sort)
+        print(new_range)
+    result = [int(item) for item in new_range]  #Преобразование списка в числаыы
+    print(result)
     #insertion_sort(points)
     range_file.close
 
