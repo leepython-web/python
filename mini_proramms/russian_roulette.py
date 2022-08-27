@@ -8,6 +8,8 @@ score = 0
 death = 0
 
 def main_menu():
+    """Главное меню, из которого можно выбрать новые функциональные пункты: 1. Начать Игру, 2. Открыть таблицу рекордов
+    3. Выход из игры"""
     answer = None
     while not answer:
         print('\n \t\t  MAIN MENU', '\n 1. Play Game \n 2. Records table \n 3. Exit \n\n')
@@ -23,12 +25,14 @@ def main_menu():
             print('INCORRECT INPUT!')
             return main_menu()
 def start():
+    """"Функциональный пунтк Начать игру. Принимает числовой пользовательский ввод от 1 до 6 и сравнивает его с рандомным числом этого же диапазона.
+    Если есть совпадение пользователь получает +1 балл, иначе увеличивается счетчик смертей"""
     global score, death
     while True:
         answer = str(input('Enter a number between 1 and 6. Press q to exit \n\n'))
         rand = str(random.randint(1, 6))  # Генерирует случайное число в диапазоне (x,y)
-        if answer == 'q':  # Выход из цикла
-            range_table()
+        if answer == 'q':   # Выход из цикла
+            range_table()   # Регистрация в таблице рекордов
             break
         elif rand == answer:  # Если ты угадал число, то твой счет увеличивается
             score += 1
@@ -64,7 +68,7 @@ def rating():
             new_range.append(i)
         print(new_range)
     result = [int(item) for item in new_range]  #Преобразование списка в числа
-    print(result)
+    print(result.sort())
 
     range_file.close
 
@@ -83,4 +87,4 @@ def insertion_sort(arr):
 
     return arr
 
-rating()
+main_menu()
