@@ -1,7 +1,7 @@
 
 import mysql.connector
 
-#score = input('Ваш счет: \n')
+score = input('Ваш счет: \n')
 
 def range_table():
     name = input('Enter your name: ')
