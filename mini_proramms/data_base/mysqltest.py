@@ -1,7 +1,7 @@
 
 import mysql.connector
 
-def rating():
+def rating(name, score):
     mydb = mysql.connector.connect(
         host='localhost',
         user='root',
@@ -11,8 +11,8 @@ def rating():
 
     my_cursor = mydb.cursor()
     sql_formula = 'INSERT INTO userscoretab (username, score) VALUES (%s, %s)'
-    user1 = ('Максим', 12)
+    user = (f'{name}', score)
 
-    my_cursor.execute(sql_formula, user1)
+    my_cursor.execute(sql_formula, user)
 
     mydb.commit()
