@@ -1,7 +1,10 @@
 
 import mysql.connector
 
+name = input('Введите ваше имя: \n')
+score = input('Ваш счет: \n')
 def rating(name, score):
+
     mydb = mysql.connector.connect(
         host='localhost',
         user='root',
@@ -16,3 +19,5 @@ def rating(name, score):
     my_cursor.execute(sql_formula, user)
 
     mydb.commit()
+
+rating(name, score)

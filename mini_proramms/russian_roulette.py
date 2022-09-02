@@ -1,6 +1,7 @@
 #   Привет, здесь я попробую создать рандомайзер с игровой механикой
 
 import random, re, pickle, shelve
+import mini_proramms.data_base.mysqltest as sqlbase
 print('\n\n', '*' * 15, 'let\'s play Russian Roulette', '*' * 15)
 print('The rules are simple. Stay alive as long as possible and take a place in the ranking!')
 
