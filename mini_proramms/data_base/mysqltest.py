@@ -22,16 +22,13 @@ def rating(name, score):
     my_cursor = mydb.cursor()
     sql_formula = 'INSERT INTO userscoretab (username, score) VALUES (%s, %s)'
     user = (f'{name}', score)
-
     my_cursor.execute(sql_formula, user)
-
     mydb.commit()
 
 def read_range_table():
     connecting()
-
     my_cursor = mydb.cursor()
-    sql_formula = 'SELECT * FROM userscoretab'
+    sql_formula = 'SELECT * FROM userscoretab ORDER BY `score` DESC'
     my_cursor.execute(sql_formula)
     result = my_cursor.fetchall()
     for row in result:
