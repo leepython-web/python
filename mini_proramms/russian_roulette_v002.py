@@ -8,10 +8,9 @@ print('The rules are simple. Stay alive as long as possible and take a place in 
 score = 0
 death = 0
 
-def main_menu():
+def main_menu(answer = None):
     """Главное меню, из которого можно выбрать новые функциональные пункты: 1. Начать Игру, 2. Открыть таблицу рекордов
     3. Выход из игры"""
-    answer = None
     while not answer:
         print('\n \t\t  MAIN MENU', '\n 1. Play Game \n 2. Records table \n 3. Exit \n\n')
         answer = input()
@@ -25,8 +24,9 @@ def main_menu():
         else:
             print('INCORRECT INPUT!')
             return main_menu()
+
 def start():
-    """"Функциональный пунтк Начать игру. Принимает числовой пользовательский ввод от 1 до 6 и сравнивает его с рандомным числом этого же диапазона.
+    """"Функциональный пункт Начать игру. Принимает числовой пользовательский ввод от 1 до 6 и сравнивает его с рандомным числом этого же диапазона.
     Если есть совпадение пользователь получает +1 балл, иначе увеличивается счетчик смертей"""
     global score, death
     while True:
@@ -47,6 +47,7 @@ def range_table():
     global score
     name = input('Enter your name: ')
     rating(name, score)
+    return read_range_table()
 
 def connecting():
     global mydb
@@ -74,5 +75,8 @@ def read_range_table():
     result = my_cursor.fetchall()
     for row in result:
         print(row)
+    go = input('\nPress anything to back into Main Menu \n')
+    if go == 'q':
+        main_menu('3')
 
 main_menu()
