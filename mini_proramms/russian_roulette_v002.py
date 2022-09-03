@@ -73,6 +73,7 @@ def read_range_table():
     sql_formula = 'SELECT * FROM userscoretab ORDER BY `score` DESC'
     my_cursor.execute(sql_formula)
     result = my_cursor.fetchall()
+    print('*'*15, 'RATING', '*'*15)
     for row in result:
         print(row)
     go = input('\nPress anything to back into Main Menu \n')
