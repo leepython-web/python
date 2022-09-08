@@ -1,9 +1,15 @@
-inputFile = open('input.txt', 'r', encoding='utf-8')
-a = inputFile.read()
-nums = a.split()
-answer = int(nums[0]) + int(nums[1])
-inputFile.close
+alice = list(input())
+zeliboba = list(input())
 
-outputFile = open('output.txt', 'w', encoding='utf-8')
-outputFile.write(answer)
-outputFile.close
+answer = [i for i in range(len(alice))]
+for i in answer:
+    if zeliboba[i] == alice[i]:
+        answer[i] = 'P'
+        alice[i] = '0'
+for i in range(len(alice)):
+    if zeliboba[i] in alice and answer[i] != 'P':
+        answer[i] = 'S'
+        alice[alice.index(f'{zeliboba[i]}')] = '0'
+    elif answer[i] != 'P':
+        answer[i] = 'I'
+print(''.join(answer))
