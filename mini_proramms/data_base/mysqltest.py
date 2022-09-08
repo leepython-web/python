@@ -1,9 +1,8 @@
 
 import mysql.connector
 
-#score = input('Ваш счет: \n')
-
 def range_table():
+    global score
     name = input('Enter your name: ')
     rating(name, score)
 
@@ -33,5 +32,3 @@ def read_range_table():
     result = my_cursor.fetchall()
     for row in result:
         print(row)
-
-read_range_table()
