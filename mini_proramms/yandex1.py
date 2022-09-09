@@ -1,0 +1,2 @@
+numDiscipl = int(input())
+
