@@ -1,2 +1,0 @@
-numDiscipl = int(input())
-

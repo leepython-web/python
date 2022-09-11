@@ -1,6 +1,20 @@
 # Программа написана исключительно в целях проверки собственных устройств, автор не несeт ответсвенности за ее применение
 import time, pyautogui
 
+def mainMenu():
+    print('~' * 50)
+    print("[1] ===> Стрелять одним сообщением указанным в переменной ")
+    print("[2] ===> Отправлять строки из блокнота ")
+    print('~' * 50)
+    option = input("[Выбирай функцию]===> ")
+
+    if option == "1":
+        sendMessage()
+    elif option == "2":
+        SendText()
+    else:
+        print('Выбирай функция 1 или 2!')
+
 def sendMessage():
     time.sleep(2)
     message = 'EGGS'
@@ -39,4 +53,4 @@ elif option == "2":
 else:
     print('Выбирай функция 1 или 2!')
 
-
+mainMenu()
