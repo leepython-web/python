@@ -1,4 +1,5 @@
 # Программа написана исключительно в целях проверки собственных устройств, автор не несeт ответсвенности за ее применение
+import re
 import time, pyautogui
 
 def mainMenu():
@@ -17,8 +18,8 @@ def mainMenu():
 
 def sendMessage():
     time.sleep(2)
-    message = 'EGGS'
-    iterations = 10
+    message = 'PUCK'
+    iterations = 100
 
     for i in range(iterations):
         pass
