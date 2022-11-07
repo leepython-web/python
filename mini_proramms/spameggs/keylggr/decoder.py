@@ -1,7 +1,7 @@
 from cryptography.fernet import Fernet
 
 def mainMenu():
-    print('''Message senler v0.001. @All rights reserved
+    print('''\n\nMessage senler v0.001. @All rights reserved
     1. Send message
     2. Decode message
     3. Encryption key''')
@@ -41,7 +41,7 @@ def keys():
         print('Generate random key')
         key = Fernet.generate_key()
         fernet = Fernet(key)
-
+        return keys()
     elif keyInput == '2':
         print(f'''Your encryption key: 
             {key}''')
