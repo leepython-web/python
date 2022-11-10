@@ -9,18 +9,19 @@ def mainMenu():
     2. Decode message
     3. Encryption key''')
     menuInput = input()
-    if menuInput == '1':
-        print('Send message')
-        sendMessage()
-    elif menuInput == '2':
-        print('Decode message')
-        decodeMessage()
-    elif menuInput == '3':
-        print('Keys')
-        keys()
-    else:
-        print('Invalid input, please try again')
-        return mainMenu()
+    match menuInput:
+        case ('1'):
+            print('Send message')
+            sendMessage()
+        case ('2'):
+            print('Decode message')
+            decodeMessage()
+        case ('3'):
+            print('Keys')
+            keys()
+        case _:
+            print('Invalid input, please try again')
+            return mainMenu()
 def sendMessage():
     ''' На входе пользовательское сообщение которое надо ЗАшифровать. Шифруем через модуль FERNET по ранее сгенерированному
     ключу (mainMenu - keys - 1. Generate random key. Метод strip для обрезания строки)'''
@@ -47,21 +48,22 @@ def keys():
     1. Generate random key
     2. Check your encryption key''')
     keyInput = input()
-    if keyInput == '1':
-        global key, fernet, keyOutput
-        print('Generate random key')
-        key = Fernet.generate_key()
-        fernet = Fernet(key)
-        keyOutput = str(key).strip('b\'')
-        print('Success!')
-        return keys()
-    elif keyInput == '2':
-        print(f'''Your encryption key: 
+    match keyInput:
+        case ('1'):
+            global key, fernet, keyOutput
+            print('Generate random key')
+            key = Fernet.generate_key()
+            fernet = Fernet(key)
+            keyOutput = str(key).strip('b\'')
+            print('Success!')
+            return keys()
+        case ('2'):
+            print(f'''Your encryption key: 
             {keyOutput}''')
-        dataCopy(keyOutput)
-    else:
-        print('Invalid input, please try again')
-        return keys()
+            dataCopy(keyOutput)
+        case _:
+            print('Invalid input, please try again')
+            return keys()
     return mainMenu()
 
 def dataCopy(menuSection):
