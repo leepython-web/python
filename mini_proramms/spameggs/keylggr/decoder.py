@@ -1,4 +1,5 @@
 from cryptography.fernet import Fernet
+import keyboard, pyperclip, time
 
 def mainMenu():
     '''Меню: 1)sendMessage, 2) decodeMessage, 3)keys + перехват ошибок'''
@@ -28,11 +29,13 @@ def sendMessage():
     enctex = fernet.encrypt(message.encode())
     enctexOutput = str(enctex).strip('b\'')
     print("The Encrypted message: ", enctexOutput)
+    dataCopy(enctexOutput)
     return mainMenu()
 
 def decodeMessage():
     ''' На входе пользовательское сообщение которое надо ДЕшифровать. Дешифруем через модуль FERNET по ранее сгенерированному
-    ключу (mainMenu - keys - 1. Generate random key. Метод strip для обрезания строки)'''
+    ключу (mainMenu - keys - 1. Generate random key. Метод strip для обрезания строки
+    Дрбавлена функция dataCopy)'''
     print('Enter your encrypted message: ')
     message = str(input())
     dectex = fernet.decrypt(message).decode()
@@ -50,13 +53,24 @@ def keys():
         key = Fernet.generate_key()
         fernet = Fernet(key)
         keyOutput = str(key).strip('b\'')
+        print('Success!')
         return keys()
     elif keyInput == '2':
         print(f'''Your encryption key: 
             {keyOutput}''')
+        dataCopy(keyOutput)
     else:
         print('Invalid input, please try again')
         return keys()
     return mainMenu()
+
+def dataCopy(menuSection):
+    '''Функция dataCopy позволяет копировать содержимое заданной переменной в буфер омена при нажатии любой кнопки'''
+    menuInput = None
+    while not menuInput:
+        menuInput = input('Press anything key to copy')
+        pyperclip.copy(f'{menuSection}')
+        time.sleep(1)
+        print('Successfully copied!')
 
 mainMenu()
