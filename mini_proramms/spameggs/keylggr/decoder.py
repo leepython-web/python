@@ -1,5 +1,5 @@
 from cryptography.fernet import Fernet
-import keyboard, pyperclip, time
+import pyperclip, time
 
 def mainMenu():
     '''Меню: 1)sendMessage, 2) decodeMessage, 3)keys + перехват ошибок'''
@@ -65,7 +65,7 @@ def keys():
     return mainMenu()
 
 def dataCopy(menuSection):
-    '''Функция dataCopy позволяет копировать содержимое заданной переменной в буфер омена при нажатии любой кнопки'''
+    '''Функция dataCopy позволяет копировать содержимое заданной переменной в буфер обмена при нажатии любой кнопки'''
     menuInput = None
     while not menuInput:
         menuInput = input('Press anything key to copy')
