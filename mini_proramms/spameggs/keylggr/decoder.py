@@ -22,7 +22,8 @@ def sendMessage():
     print('Enter your message: ')
     message = str(input())
     enctex = fernet.encrypt(message.encode())
-    print("The Encrypted message: ", enctex)
+    enctexOutput = str(enctex).strip('b\'')
+    print("The Encrypted message: ", enctexOutput)
     return mainMenu()
 
 def decodeMessage():
@@ -37,14 +38,15 @@ def keys():
     2. Check your encryption key''')
     keyInput = input()
     if keyInput == '1':
-        global key, fernet
+        global key, fernet, keyOutput
         print('Generate random key')
         key = Fernet.generate_key()
         fernet = Fernet(key)
+        keyOutput = str(key).strip('b\'')
         return keys()
     elif keyInput == '2':
         print(f'''Your encryption key: 
-            {key}''')
+            {keyOutput}''')
     else:
         print('Invalid input, please try again')
         return keys()
