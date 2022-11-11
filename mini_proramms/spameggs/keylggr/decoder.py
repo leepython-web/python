@@ -24,7 +24,7 @@ def mainMenu():
             return mainMenu()
 def sendMessage():
     ''' На входе пользовательское сообщение которое надо ЗАшифровать. Шифруем через модуль FERNET по ранее сгенерированному
-    ключу (mainMenu - keys - 1. Generate random key. Метод strip для обрезания строки)'''
+    ключу (mainMenu - keys - 1. Generate random key). Метод strip для обрезания строки'''
     print('Enter your message: ')
     message = str(input())
     enctex = fernet.encrypt(message.encode())
@@ -35,7 +35,7 @@ def sendMessage():
 
 def decodeMessage():
     ''' На входе пользовательское сообщение которое надо ДЕшифровать. Дешифруем через модуль FERNET по ранее сгенерированному
-    ключу (mainMenu - keys - 1. Generate random key. Метод strip для обрезания строки
+    ключу (mainMenu - keys - 1. Generate random key). Метод strip для обрезания строки
     Дрбавлена функция dataCopy)'''
     print('Enter your encrypted message: ')
     message = str(input())
