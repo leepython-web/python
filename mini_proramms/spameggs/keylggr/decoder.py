@@ -4,7 +4,7 @@ import pyperclip, time
 def mainMenu():
     '''Меню: 1)sendMessage, 2) decodeMessage, 3)keys + перехват ошибок'''
 
-    print('''\n\nMessage senler v0.001. @All rights reserved
+    print('''\n\nMessage senler v0.002. @All rights reserved
     1. Send message
     2. Decode message
     3. Encryption key''')
@@ -46,7 +46,8 @@ def keys():
     '''Генерация ключа через модуль FERNET и его хранение'''
     print('''
     1. Generate random key
-    2. Check your encryption key''')
+    2. Check your encryption key
+    3. Enter a new key''')
     keyInput = input()
     match keyInput:
         case ('1'):
@@ -54,13 +55,16 @@ def keys():
             print('Generate random key')
             key = Fernet.generate_key()
             fernet = Fernet(key)
-            keyOutput = str(key).strip('b\'')
             print('Success!')
             return keys()
         case ('2'):
+            keyOutput = str(key).strip('b\'')
             print(f'''Your encryption key: 
             {keyOutput}''')
             dataCopy(keyOutput)
+        case ('3'):
+            key = input('Enter a new key')
+            fernet = Fernet(key)
         case _:
             print('Invalid input, please try again')
             return keys()
