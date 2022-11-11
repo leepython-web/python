@@ -42,6 +42,7 @@ def decodeMessage():
     dectex = fernet.decrypt(message).decode()
     print("The Decrypted message: ", dectex)
     return mainMenu()
+
 def keys():
     '''Генерация ключа через модуль FERNET и его хранение'''
     print('''
