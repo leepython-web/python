@@ -1,27 +1,31 @@
 from cryptography.fernet import Fernet
-import pyperclip, time
-
+import pyperclip
+status = 0
 def mainMenu():
+    global status
     '''Меню: 1)sendMessage, 2) decodeMessage, 3)keys + перехват ошибок'''
-
-    print('''\n\nMessage senler v0.002. @All rights reserved
+    print('''\nMessage senler v0.002. @All rights reserved
     1. Send message
     2. Decode message
     3. Encryption key''')
     menuInput = input()
-    match menuInput:
-        case ('1'):
-            print('Send message')
-            sendMessage()
-        case ('2'):
-            print('Decode message')
-            decodeMessage()
-        case ('3'):
-            print('Keys')
-            keys()
-        case _:
-            print('Invalid input, please try again')
-            return mainMenu()
+    if menuInput in ['1', '2'] and status < 1:
+        print('Error. Firstly, generate or enter your encryption key!')
+        return mainMenu()
+    elif menuInput == '1':
+        print('Send message')
+        sendMessage()
+    elif menuInput == '2':
+        print('Decode message')
+        decodeMessage()
+    elif menuInput == '3':
+        status = status + 1
+        print('Keys')
+        keys()
+    else:
+        print('Invalid input, please try again')
+        return mainMenu()
+
 def sendMessage():
     ''' На входе пользовательское сообщение которое надо ЗАшифровать. Шифруем через модуль FERNET по ранее сгенерированному
     ключу (mainMenu - keys - 1. Generate random key). Метод strip для обрезания строки'''
@@ -55,7 +59,6 @@ def keys():
             global key, fernet, keyOutput
             print('Generate random key')
             key = Fernet.generate_key()
-            fernet = Fernet(key)
             print('Success!')
             return keys()
         case ('2'):
@@ -64,20 +67,19 @@ def keys():
             {keyOutput}''')
             dataCopy(keyOutput)
         case ('3'):
-            key = input('Enter a new key')
-            fernet = Fernet(key)
+            key = input('Enter a new key:\n')
         case _:
             print('Invalid input, please try again')
             return keys()
+    fernet = Fernet(key)
     return mainMenu()
 
 def dataCopy(menuSection):
     '''Функция dataCopy позволяет копировать содержимое заданной переменной в буфер обмена при нажатии любой кнопки'''
     menuInput = None
     while not menuInput:
-        menuInput = input('Press anything key to copy')
+        menuInput = input('Press anything key to copy:\n')
         pyperclip.copy(f'{menuSection}')
-        time.sleep(1)
         print('Successfully copied!')
 
 mainMenu()
