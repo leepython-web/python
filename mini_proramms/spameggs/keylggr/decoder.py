@@ -2,8 +2,8 @@ from cryptography.fernet import Fernet
 import pyperclip
 status = 0
 def mainMenu():
-    global status
     '''Меню: 1)sendMessage, 2) decodeMessage, 3)keys + перехват ошибок'''
+    global  status
     print('''\nMessage senler v0.002. @All rights reserved
     1. Send message
     2. Decode message
@@ -67,7 +67,7 @@ def keys():
             {keyOutput}''')
             dataCopy(keyOutput)
         case ('3'):
-            key = input('Enter a new key:\n')
+            key = input('Enter a new key')
         case _:
             print('Invalid input, please try again')
             return keys()
