@@ -5,3 +5,5 @@ class Heroes(models.Model):
     heroName = models.CharField(max_length=30, blank=False)
     strength = models.IntegerField(default=0)
 
+    def __str__(self):
+        return self.heroName
