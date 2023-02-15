@@ -1,29 +1,27 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-N = 5
+def act(x):
+    return 0 if x <= 0 else 1
 
-x1 = np.random.random(N)
-x2 = x1 + [np.random.randint(10)/10 for i in range(N)]
-Class1 = [x1, x2]
+def go(C):
+    x = np.array([C[0], C[1], 1])
+    w1 = [1, 1, -1.5]
+    w2 = [1, 1, -0.5]
+    w_hidden = np.array([w1, w2])
+    w_out = np.array([-1, 1, -0.5])
 
-x1 = np.random.random(N)
-x2 = x1 - [np.random.randint(10)/10 for i in range(N)] - 0.1
-Class2 = [x1, x2]
+    sum = np.dot(w_hidden, x)
+    out = [act(x) for x in sum]
+    out.append(1)
+    out = np.array(out)
 
-f = [0, 1]
+    sum = np.dot(w_out, out)
+    y = act(sum)
+    return y
 
-w = np.array([-0.7, 0.7])
-for i in range(N):
-    x = np.array([Class2[0][i], Class2[1][i]])
-    y = np.dot(w, x)
-    if y >= 0:
-        print("Класс 1")
-    else:
-        print("Класс 2")
+C1 = [(1,0), (0,1)]
+C2 = [(0,0), (1,1)]
 
-plt.scatter(Class1[0][:], Class1[1][:], s=10, c='red')
-plt.scatter(Class2[0][:], Class2[1][:], s=10, c='blue')
-plt.plot(f)
-plt.grid(True)
-plt.show()
+print( go(C1[0]), go(C1[1]) )
+print( go(C2[0]), go(C2[1]) )
