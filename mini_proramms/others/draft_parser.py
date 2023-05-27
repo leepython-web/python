@@ -4,9 +4,17 @@ import mysql.connector
 from mysql.connector import connect, Error
 from getpass import getpass
 
-URL_TEMPLATE = 'https://wildrift-wiki.com/assassins/283-riven.html'
+#URL_TEMPLATE = 'https://wildrift-wiki.com/assassins/283-riven.html'
 
-def hero_parser(URL_TEMPALTE):
+def main_menu():
+    menu_input = input('MAIN_MENU.\n1. Enter a URL.\n2. Enter a hero name.\n')
+    if menu_input == '1':
+        URL_TEMPLATE = input('Enter a URL: ')
+        hero_parser(URL_TEMPLATE)
+    else:
+        print('Try again')
+
+def hero_parser(URL_TEMPLATE):
     result = []
     r = requests.get(URL_TEMPLATE)
     soup = bs(r.text, 'html.parser')
@@ -32,5 +40,6 @@ def mysql_connect():
     except Error as e:
         print(e)
 
-mysql_connect()
+main_menu()
+#mysql_connect()
 #hero_parser(URL_TEMPLATE)
