@@ -24,6 +24,7 @@ def hero_parser(URL_TEMPLATE):
     return result
 
 def mysql_connect(URL_TEMPLATE):
+    result = hero_parser(URL_TEMPLATE)
     try:
         with connect(
             host='localhost',
@@ -32,13 +33,14 @@ def mysql_connect(URL_TEMPLATE):
             #password=getpass('Enter your pass: '),
             database='wild_draft'
         ) as connection:
-            show_table_query = 'SHOW DATABASES'
-            for charact in hero_parser(URL_TEMPLATE):
-                print(charact)
+            insert_charact_query = f'''
+            INSERT INTO wild_draft.infoheroes
+            (IdHero, IdChar, Lvl_1, WhithLvl, Lvl_15)
+            VALUES ( 1, 2, 5, 6, 7)
+            '''
             with connection.cursor() as cursor:
-                cursor.execute(show_table_query)
-                for tb in cursor:
-                    print(tb)
+                cursor.execute(insert_charact_query)
+                connection.commit()
     except Error as e:
         print(e)
 
