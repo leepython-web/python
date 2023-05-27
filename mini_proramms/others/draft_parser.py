@@ -10,7 +10,7 @@ def main_menu():
     menu_input = input('MAIN_MENU.\n1. Enter a URL.\n2. Enter a hero name.\n')
     if menu_input == '1':
         URL_TEMPLATE = input('Enter a URL: ')
-        hero_parser(URL_TEMPLATE)
+        mysql_connect(URL_TEMPLATE)
     else:
         print('Try again')
 
@@ -21,9 +21,9 @@ def hero_parser(URL_TEMPLATE):
     characteristics = soup.find('table', class_='fr-solid-borders fr-alternate-rows').find_all('td')
     for parametr in characteristics:
         result.append(parametr.text)
-    print(result)
+    return result
 
-def mysql_connect():
+def mysql_connect(URL_TEMPLATE):
     try:
         with connect(
             host='localhost',
@@ -33,6 +33,8 @@ def mysql_connect():
             database='wild_draft'
         ) as connection:
             show_table_query = 'SHOW DATABASES'
+            for charact in hero_parser(URL_TEMPLATE):
+                print(charact)
             with connection.cursor() as cursor:
                 cursor.execute(show_table_query)
                 for tb in cursor:
